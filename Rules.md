@@ -2,7 +2,7 @@
 a tactical board game by Florian Jehn
 
 ### 1. Game material ###
-- a board with four rings that become decreasingly smaller. Each with seven tiles and a center piece
+- a board with a center piece and four rings that become decreasingly smaller. Each ring has seven tiles 
 - Two runner, five warriors and two blocker per player
 - Four six-sided dice per player
 - 28 tiles with different terrain: 12 light, eight normal, eight difficult
@@ -38,6 +38,8 @@ If no moves are possible, the dice are forfeited. One does not have to use all d
 - one and two: Recruitment
 - three and four: Move and fight
 - five and six: Turning
+
+
 #### Recruitment ####
 A recruitment dice can be used to recruit one unit in ones starting area. 
 
