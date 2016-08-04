@@ -8,6 +8,7 @@ Created on Wed Aug  3 10:43:16 2016
 import pygame as pg
 import math
 import time
+import sys
 
 class KotH():
     def __init__(self):
@@ -27,7 +28,7 @@ class KotH():
         periodically updates the game, calls the graphics and receives user input
         """
         # sleep to make the game 60 fps
-        self.clock.tick(60)
+        self.clock.tick(30)
 
         # clear the screen
         self.screen.fill(WHITE)
@@ -38,7 +39,7 @@ class KotH():
         for event in pg.event.get():
             # quit if the quit button was pressed
             if event.type == pg.QUIT:
-                exit()
+                pg.quit(); sys.exit()
         
         #update the screen
         pg.display.flip()
@@ -49,6 +50,7 @@ class KotH():
         """
         center_rad = height//(num_players+3)//2 # plus one to leave room for the starting areas
         ring_width = center_rad
+        print(ring_width)
         self.draw_center(center_rad)
         for player_num in range(num_players):
             self.draw_counter(player_num)
@@ -78,6 +80,8 @@ class KotH():
         """
         # calculate distance of the rectangle of the arc from the center
         distance = (player_num*ring_width)+ 0.5*ring_width + center_rad
+#        if player_num == 0:
+ #           print(distance)
         # draw arcs, each 2*pi/7 wide
         pg.draw.arc(self.screen, BLACK, [0.5*width-distance, 0.5*height-distance, 0.5*width+distance, 0.5*height+distance], tile_num*(2*pi/7), (tile_num*(2*pi/7))+2*pi/7, ring_width)   
         
