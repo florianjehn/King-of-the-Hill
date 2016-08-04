@@ -30,7 +30,7 @@ class KotH():
         # sleep to make the game 60 fps
         self.clock.tick(30)
 
-        # clear the screen
+        # make the screen white
         self.screen.fill(WHITE)
         
         # draw the board
