@@ -50,7 +50,6 @@ class KotH():
         """
         center_rad = height//(num_players+3)//2 # plus one to leave room for the starting areas
         ring_width = center_rad
-        print(ring_width)
         self.draw_center(center_rad)
         for player_num in range(num_players):
             self.draw_counter(player_num)
@@ -80,7 +79,9 @@ class KotH():
         """
         # calculate distance of the rectangle of the arc from the center
         distance = (player_num*ring_width)+ 0.5*ring_width + center_rad
-#        if player_num == 0:
+        if player_num == 0:
+            pg.draw.rect(self.screen, GREEN, [400, 410, 400, 410],2)
+           # print(center_rad)
  #           print(distance)
         # draw arcs, each 2*pi/7 wide
         pg.draw.arc(self.screen, BLACK, [0.5*width-distance, 0.5*height-distance, 0.5*width+distance, 0.5*height+distance], tile_num*(2*pi/7), (tile_num*(2*pi/7))+2*pi/7, ring_width)   
@@ -104,7 +105,7 @@ class KotH():
 num_players = 4
 tiles_per_ring = 7
 width = 800
-height = 600
+height = 800
 pi = math.pi
 
 # Define the colors we will use in RGB format
