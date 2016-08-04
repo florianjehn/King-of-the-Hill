@@ -7,7 +7,7 @@ Created on Wed Aug  3 10:43:16 2016
 
 import pygame as pg
 import math
-
+import time
 
 class KotH():
     def __init__(self):
@@ -47,7 +47,7 @@ class KotH():
         """
         calls all method which draw the seperate pieces of the board
         """
-        center_rad = height/num_players/2 # plus one to leave room for the starting areas
+        center_rad = height//(num_players+3)//2 # plus one to leave room for the starting areas
         ring_width = center_rad
         self.draw_center(center_rad)
         for player_num in range(num_players):
@@ -61,12 +61,13 @@ class KotH():
         """
         draws the center piece
         """
-        pg.draw.circle(self.screen, BLACK, [width/2, height/2], center_rad)
+        pg.draw.circle(self.screen, BLACK, [width//2, height//2], center_rad)
     
     def draw_ring(self, player_num, ring_width, center_rad):
         """
         draws the outer rings
         """
+        # draw all tiles
         for tile_num in range(tiles_per_ring):
             self.draw_tile(player_num, ring_width, tile_num, center_rad)
         
@@ -76,9 +77,10 @@ class KotH():
         depending on the number of players and the size of the screen
         """
         # calculate distance of the rectangle of the arc from the center
-        distance = (player_num*ring_width)+0.5*ring_width+center_rad
+        distance = (player_num*ring_width)+ 0.5*ring_width + center_rad
         # draw arcs, each 2*pi/7 wide
-        pg.draw.arc(self.screen, BLACK, [0.5*width-distance, 0.5*height-distance, 0.5*width+distance, 0.5*height+distance], tile_num*(2*pi/7), (tile_num*(2*pi/7))+2*pi/7, ring_width)        
+        pg.draw.arc(self.screen, BLACK, [0.5*width-distance, 0.5*height-distance, 0.5*width+distance, 0.5*height+distance], tile_num*(2*pi/7), (tile_num*(2*pi/7))+2*pi/7, ring_width)   
+        
         
     
     def draw_counter(self, player_num):
