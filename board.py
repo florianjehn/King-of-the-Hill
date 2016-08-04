@@ -48,7 +48,7 @@ class KotH():
         """
         calls all method which draw the seperate pieces of the board
         """
-        center_rad = height//(num_players+3)//2 # plus one to leave room for the starting areas
+        center_rad = (height//(num_players+3)//2) # plus one to leave room for the starting areas
         ring_width = center_rad
         self.draw_center(center_rad)
         for player_num in range(num_players):
@@ -62,7 +62,8 @@ class KotH():
         """
         draws the center piece
         """
-        pg.draw.circle(self.screen, BLACK, [width//2, height//2], center_rad)
+        pg.draw.circle(self.screen, BLACK, [width//2, height//2], center_rad-20)
+        # - 20 to adjust it in size
     
     def draw_ring(self, player_num, ring_width, center_rad):
         """
@@ -79,12 +80,8 @@ class KotH():
         """
         # calculate distance of the rectangle of the arc from the center
         distance = (player_num*ring_width)+ 0.5*ring_width + center_rad
-        if player_num == 0:
-            pg.draw.rect(self.screen, GREEN, [400, 400, 10, 10])
-           # print(center_rad)
- #           print(distance)
         # draw arcs, each 2*pi/7 wide
-        pg.draw.arc(self.screen, BLACK, [0.5*width-distance, 0.5*height-distance, distance, distance], tile_num*(2*pi/7), (tile_num*(2*pi/7))+2*pi/7, int(ring_width*0.5))   
+        pg.draw.arc(self.screen, BLACK, [0.5*width-distance, 0.5*height-distance, distance*2, distance*2], tile_num*(2*pi/7), (tile_num*(2*pi/7))+2*pi/7, int(ring_width*0.5))   
         
         
     
