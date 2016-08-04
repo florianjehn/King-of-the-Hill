@@ -80,11 +80,11 @@ class KotH():
         # calculate distance of the rectangle of the arc from the center
         distance = (player_num*ring_width)+ 0.5*ring_width + center_rad
         if player_num == 0:
-            pg.draw.rect(self.screen, GREEN, [400, 410, 400, 410],2)
+            pg.draw.rect(self.screen, GREEN, [400, 400, 10, 10])
            # print(center_rad)
  #           print(distance)
         # draw arcs, each 2*pi/7 wide
-        pg.draw.arc(self.screen, BLACK, [0.5*width-distance, 0.5*height-distance, 0.5*width+distance, 0.5*height+distance], tile_num*(2*pi/7), (tile_num*(2*pi/7))+2*pi/7, ring_width)   
+        pg.draw.arc(self.screen, BLACK, [0.5*width-distance, 0.5*height-distance, distance, distance], tile_num*(2*pi/7), (tile_num*(2*pi/7))+2*pi/7, int(ring_width*0.5))   
         
         
     
@@ -117,10 +117,9 @@ RED = (255, 0, 0)
         
         
 koth = KotH() # calls init
-t = 1
-while t < 500:
+
+while True:
     koth.update()
-    t += 1
     
 pg.quit()
     
