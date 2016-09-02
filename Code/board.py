@@ -112,11 +112,12 @@ BLUE = ( 0, 0, 255)
 GREEN = ( 0, 255, 0)
 RED = (255, 0, 0)       
         
-        
-koth = KotH() # calls init
-
-while True:
-    koth.update()
+ 
+if __name__ == "__main__":       
+    koth = KotH() # calls init
     
-pg.quit()
+    while True:
+        koth.update()
+        
+    pg.quit()
     
