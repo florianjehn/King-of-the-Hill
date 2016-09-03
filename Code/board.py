@@ -11,6 +11,16 @@ import time
 import sys
 
 class KotH():
+    """
+    main class for the game
+    """
+    # Define the colors we will use in RGB format as class attributes
+    BLACK = ( 0, 0, 0)
+    WHITE = (255, 255, 255)
+    
+    BLUE = ( 0, 0, 255)
+    GREEN = ( 0, 255, 0)
+    RED = (255, 0, 0)    
     def __init__(self):
         """
         define and call the screen for the game
@@ -97,7 +107,43 @@ class KotH():
         draws the starting area for each player
         """
         pass
-    
+
+class Tile:
+    """
+    class for the instances of the tiles on the board
+    """
+    def __init__(self, rect_x = 0, rect_y = 0 , terrain = 1):
+        """
+        defines the instance attributes for every tile on call
+        """
+        self.rect_x = rect_x
+        self.rect_y = rect_y
+        self.terrain = terrain
+        
+class Counter:
+    """
+    class for the instances of the counters
+    """
+    def __init__(self, x = 0, y = 0, player = None, points = 0):
+        """
+        defines the instance attributes for every counter on call
+        """
+        self.x = x
+        self.y = y
+        self.player = player
+        self.points = points
+        
+class Start_Area:
+    """
+    class for the instances of the starting areas
+    """
+    def __init__(self, rect_x = 0, rect_y = 0, player = None):
+        """
+        defines the instance attributes for every start area on call
+        """
+        self.rect_x = rect_x
+        self.rect_y = rect_y
+        self.player = player
     
 num_players = 4
 tiles_per_ring = 7
@@ -105,12 +151,7 @@ width = 800
 height = 800
 pi = math.pi
 
-# Define the colors we will use in RGB format
-BLACK = ( 0, 0, 0)
-WHITE = (255, 255, 255)
-BLUE = ( 0, 0, 255)
-GREEN = ( 0, 255, 0)
-RED = (255, 0, 0)       
+   
         
  
 if __name__ == "__main__":       
