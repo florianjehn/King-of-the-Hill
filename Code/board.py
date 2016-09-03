@@ -15,12 +15,17 @@ class KotH():
     main class for the game
     """
     # Define the colors we will use in RGB format as class attributes
-    BLACK = ( 0, 0, 0)
-    WHITE = (255, 255, 255)
+    black = ( 0, 0, 0)
+    white = (255, 255, 255)
+    light_ter = ( 0, 255, 0) # green
+    normal_ter = (255,255,0) # yellow
+    diff_ter = (255, 0, 0) # red
+    col_play_1 = ( 0, 0, 255) # blue
+    col_play_2 = (186, 143, 43) # brown
+    col_play_3 = (150, 43, 186) # purple
+    col_play_4 = (177, 171, 179) # grey
+ 
     
-    BLUE = ( 0, 0, 255)
-    GREEN = ( 0, 255, 0)
-    RED = (255, 0, 0)    
     def __init__(self):
         """
         define and call the screen for the game
@@ -41,7 +46,7 @@ class KotH():
         self.clock.tick(30)
 
         # make the screen white
-        self.screen.fill(WHITE)
+        self.screen.fill(self.white)
         
         # draw the board
         self.draw_board()
@@ -72,7 +77,7 @@ class KotH():
         """
         draws the center piece
         """
-        pg.draw.circle(self.screen, BLACK, [width//2, height//2], center_rad-20)
+        pg.draw.circle(self.screen, self.black, [width//2, height//2], center_rad-20)
         # - 20 to adjust it in size
     
     def draw_ring(self, player_num, ring_width, center_rad):
@@ -91,7 +96,7 @@ class KotH():
         # calculate distance of the rectangle of the arc from the center
         distance = (player_num*ring_width)+ 0.5*ring_width + center_rad
         # draw arcs, each 2*pi/7 wide
-        pg.draw.arc(self.screen, BLACK, [0.5*width-distance, 0.5*height-distance, distance*2, distance*2], tile_num*(2*pi/7), (tile_num*(2*pi/7))+2*pi/7, int(ring_width*0.5))   
+        pg.draw.arc(self.screen, self.black, [0.5*width-distance, 0.5*height-distance, distance*2, distance*2], tile_num*(2*pi/7), (tile_num*(2*pi/7))+2*pi/7, int(ring_width*0.5))   
         
         
     
@@ -144,7 +149,9 @@ class Start_Area:
         self.rect_x = rect_x
         self.rect_y = rect_y
         self.player = player
-    
+        
+# Important variables
+        
 num_players = 4
 tiles_per_ring = 7
 width = 800
