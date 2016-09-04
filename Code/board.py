@@ -43,7 +43,7 @@ class board():
         tiles.append([])
  
     # define additional class attributes
-    center_rad = (height//(num_players+3)//2) 
+    center_rad = (height//7//2) 
     ring_width = center_rad
 
     
@@ -64,7 +64,7 @@ class board():
         # and sorts them into a list of list that represent all tile
         # sorted by the ring their in 
         
-        # Order of tiles in the tiles list of list
+        # Order of tiles in the tiles list of lists
         # tiles [0] = most inward ring
         # tiles [1] = second most inward ring
         # tiles [2] = third most inward ring
@@ -72,6 +72,7 @@ class board():
         # tiles [4] = center piece
         # tiles [5] = starting areas
         self.tiles[4].append(Center_Piece(width//2, height//2, self.center_rad-20))
+        terrains = self.init_terrain()
         for ring in range(4):
             for tile in range(6):
                 self.tiles[ring].append(Tile())
@@ -79,14 +80,15 @@ class board():
     def init_terrain(self):
         """
         creates and returns a list of list which contains the randomized terrain
-        for all tiles
+        for all tiles of ring
         """
         terrains = []
         ring = [1,1,1,2,2,3,3]            
-        for ring in range(4):
-            terrains.append(copy.copy(ring).shuffle())    
-            
-        print(terrains)
+        for ring_num in range(4):
+            ring_copy = copy.copy(ring)
+            random.shuffle(ring_copy) # shuffle it, so that the starting order of terrains is random for every ring              
+            terrains.append(ring_copy)             
+        return terrains
     
     def update(self):
         """
@@ -184,6 +186,11 @@ class Tile:
     
     # Somehow the units must be asociated with a given tile
     
+    
+    # define the terrains
+    ter_names = ["center", "light", "normal", "difficult"]
+
+    
     def __init__(self, rect_x = 0, rect_y = 0 ,radi_start = 0, radi_end = 0,  terrain = 0):
         """
         defines the instance attributes for every tile on call
@@ -194,6 +201,9 @@ class Tile:
         self.radi_start = radi_start
         self.radi_end = radi_end
         self.terrain = terrain
+        
+    def __str__(self):
+        pass
         
     def change_terrain(self, new_ter):
         """changes the terrain"""
@@ -259,6 +269,8 @@ class Start_Area:
         
 class Unit:
     # 0 = runner, 1 = warrior, 2 = blocker
+    # define the units
+    unit_names = ["runner", "warrior", "blocker"]    
     pass
         
 # Important variables
