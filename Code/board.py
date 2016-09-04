@@ -27,13 +27,19 @@ class board():
     col_play_3 = (150, 43, 186) # purple
     col_play_4 = (177, 171, 179) # grey
     
+    tile_colors = [black, light_ter, normal_ter, diff_ter]
+    player_colors =  [col_play_1, col_play_2, col_play_4, col_play_4]
+    
     # define the terrains
     ter_names = ["center", "light", "normal", "difficult"]
     
     # define the units
     unit_names = ["runner", "warrior", "blocker"]
     
+    # prepare the tiles list of list for all tiles
     tiles = []
+    for section in range(6):
+        tiles.append([])
  
     
     def __init__(self):
@@ -48,10 +54,20 @@ class board():
         # initialize pygame clock
         self.clock = pg.time.Clock()
         
+        self.center_rad = (height//(num_players+3)//2) 
+
         # write something here that creates all tiles for the first time 
         # and sorts them into a list of list that represent all tile
         # sorted by the ring their in 
-        #äself.tiles[0] = []
+        
+        # Order of tiles in the tiles list of list
+        # tiles [0] = center piece
+        # tiles [1] = most inward ring
+        # tiles [2] = second most inward ring
+        # tiles [3] = third most inward ring
+        # tiles [4] = outer ring
+        # tiles [5] = starting areas
+        self.tiles[0].append(Center_Piece(width//2, height//2, self.center_rad-20))
 
     
     def update(self):
@@ -79,13 +95,12 @@ class board():
         """
         calls all method which draw the seperate pieces of the board
         """
-        center_rad = (height//(num_players+3)//2) 
-        ring_width = center_rad
-        self.draw_center(center_rad)
+        ring_width = self.center_rad
+        self.draw_center(self.center_rad)
         for player_num in range(num_players):
             self.draw_counter(player_num)
             self.draw_start_area(player_num)
-            self.draw_ring(player_num, ring_width, center_rad)
+            self.draw_ring(player_num, ring_width)
             
         
     
@@ -94,23 +109,23 @@ class board():
         draws the center piece
         """
         # - 20 to adjust it in size        
-        pg.draw.circle(self.screen, self.black, [width//2, height//2], center_rad-20)
+        pg.draw.circle(self.screen, self.black, [self.tiles[0][0].x, self.tiles[0][0].y], self.tiles[0][0].rad)
     
-    def draw_ring(self, player_num, ring_width, center_rad):
+    def draw_ring(self, player_num, ring_width):
         """
         draws the outer rings
         """
         # draw all tiles
         for tile_num in range(tiles_per_ring):
-            self.draw_tile(player_num, ring_width, tile_num, center_rad)
+            self.draw_tile(player_num, ring_width, tile_num)
         
-    def draw_tile(self, player_num, ring_width, tile_num, center_rad):
+    def draw_tile(self, player_num, ring_width, tile_num):
         """ 
         draws one arc tile of a ring
         depending on the number of players and the size of the screen
         """
         # calculate distance of the rectangle of the arc from the center
-        distance = (player_num*ring_width)+ 0.5*ring_width + center_rad
+        distance = (player_num*ring_width)+ 0.5*ring_width + self.center_rad
         # draw arcs, each 2*pi/7 wide
         pg.draw.arc(self.screen, self.black, [0.5*width-distance, 0.5*height-distance, distance*2, distance*2], tile_num*(2*pi/7), (tile_num*(2*pi/7))+2*pi/7, int(ring_width*0.5))   
         
@@ -149,7 +164,17 @@ class Tile:
         self.terrain = new_ter
         
 class Center_Piece:
-    pass
+    """
+    class for the instance of the center piece
+    """
+    def __init__(self,x = 0, y = 0, rad = 0, col = 0):
+        """
+        defines the instance attributes
+        """
+        self.x = x
+        self.y = y
+        self.rad = rad
+        self.col = col
         
 class Counter:
     """
