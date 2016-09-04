@@ -24,6 +24,8 @@ class KotH():
     col_play_2 = (186, 143, 43) # brown
     col_play_3 = (150, 43, 186) # purple
     col_play_4 = (177, 171, 179) # grey
+    
+    tiles = []
  
     
     def __init__(self):
@@ -37,6 +39,10 @@ class KotH():
         pg.display.set_caption("King of the Hill")
         # initialize pygame clock
         self.clock = pg.time.Clock()
+        
+        # write something here that creates all tiles for the first time 
+        # and sorts them into a list of list that represent all tile
+        # sorted by the ring their in 
     
     def update(self):
         """
@@ -63,7 +69,7 @@ class KotH():
         """
         calls all method which draw the seperate pieces of the board
         """
-        center_rad = (height//(num_players+3)//2) # plus one to leave room for the starting areas
+        center_rad = (height//(num_players+3)//2) 
         ring_width = center_rad
         self.draw_center(center_rad)
         for player_num in range(num_players):
@@ -77,8 +83,8 @@ class KotH():
         """
         draws the center piece
         """
+        # - 20 to adjust it in size        
         pg.draw.circle(self.screen, self.black, [width//2, height//2], center_rad-20)
-        # - 20 to adjust it in size
     
     def draw_ring(self, player_num, ring_width, center_rad):
         """
@@ -117,13 +123,18 @@ class Tile:
     """
     class for the instances of the tiles on the board
     """
-    def __init__(self, rect_x = 0, rect_y = 0 , terrain = 1):
+    def __init__(self, rect_x = 0, rect_y = 0 , terrain = 0):
         """
         defines the instance attributes for every tile on call
         """
+        # terrain 0 = black, 1 = light/green, 2 normal/yellow, 3 difficult/red
         self.rect_x = rect_x
         self.rect_y = rect_y
         self.terrain = terrain
+        
+    def change_terrain(self, new_ter):
+        """changes the terrain"""
+        self.terrain = new_ter
         
 class Counter:
     """
@@ -137,6 +148,10 @@ class Counter:
         self.y = y
         self.player = player
         self.points = points
+        
+    def increment_points(self):
+        """increments the points by one"""
+        self.points += 1
         
 class Start_Area:
     """
