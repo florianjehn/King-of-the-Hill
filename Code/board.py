@@ -51,6 +51,8 @@ class board():
         # write something here that creates all tiles for the first time 
         # and sorts them into a list of list that represent all tile
         # sorted by the ring their in 
+        #äself.tiles[0] = []
+
     
     def update(self):
         """
@@ -145,6 +147,9 @@ class Tile:
     def change_terrain(self, new_ter):
         """changes the terrain"""
         self.terrain = new_ter
+        
+class Center_Piece:
+    pass
         
 class Counter:
     """
