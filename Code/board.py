@@ -7,12 +7,14 @@ Created on Wed Aug  3 10:43:16 2016
 
 import pygame as pg
 import math
+import datetime
 import time
+import random
 import sys
 
-class KotH():
+class board():
     """
-    main class for the game
+    draws all the things needed to start and play the game
     """
     # Define the colors we will use in RGB format as class attributes
     black = ( 0, 0, 0)
@@ -24,6 +26,12 @@ class KotH():
     col_play_2 = (186, 143, 43) # brown
     col_play_3 = (150, 43, 186) # purple
     col_play_4 = (177, 171, 179) # grey
+    
+    # define the terrains
+    ter_names = ["center", "light", "normal", "difficult"]
+    
+    # define the units
+    unit_names = ["runner", "warrior", "blocker"]
     
     tiles = []
  
@@ -123,13 +131,15 @@ class Tile:
     """
     class for the instances of the tiles on the board
     """
-    def __init__(self, rect_x = 0, rect_y = 0 , terrain = 0):
+    def __init__(self, rect_x = 0, rect_y = 0 ,radi_start = 0, radi_end = 0,  terrain = 0):
         """
         defines the instance attributes for every tile on call
         """
-        # terrain 0 = black, 1 = light/green, 2 normal/yellow, 3 difficult/red
+        # terrain 0 = black (center), 1 = light/green, 2 normal/yellow, 3 difficult/red
         self.rect_x = rect_x
         self.rect_y = rect_y
+        self.radi_start = radi_start
+        self.radi_end = radi_end
         self.terrain = terrain
         
     def change_terrain(self, new_ter):
@@ -149,7 +159,7 @@ class Counter:
         self.player = player
         self.points = points
         
-    def increment_points(self):
+    def increment(self):
         """increments the points by one"""
         self.points += 1
         
@@ -157,13 +167,19 @@ class Start_Area:
     """
     class for the instances of the starting areas
     """
-    def __init__(self, rect_x = 0, rect_y = 0, player = None):
+    def __init__(self, rect_x = 0, rect_y = 0, radi_start = 0, radi_end = 0, player = None):
         """
         defines the instance attributes for every start area on call
         """
         self.rect_x = rect_x
         self.rect_y = rect_y
+        self.radi_start = radi_start
+        self.radi_end = radi_end
         self.player = player
+        
+class Unit:
+    # 0 = runner, 1 = warrior, 2 = blocker
+    pass
         
 # Important variables
         
@@ -177,7 +193,7 @@ pi = math.pi
         
  
 if __name__ == "__main__":       
-    koth = KotH() # calls init
+    koth = board() # calls init
     
     while True:
         koth.update()
