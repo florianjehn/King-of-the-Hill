@@ -80,3 +80,6 @@ For every turn a unit stands at the center piece one is subtracted from a counte
 
 #### One excluded ####
 Players choose one unit that they are not allowed to use for the rest of the game, resulting in a less mirroring game-play. 
+
+#### Teamplay ####
+The player team up in two teams. The points made count for the team and not for the one player who scored it. 
