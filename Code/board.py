@@ -28,6 +28,7 @@ class board():
     col_play_3 = (150, 43, 186) # purple
     col_play_4 = (177, 171, 179) # grey
     
+    # order the colos for easier access
     tile_colors = [black, light_ter, normal_ter, diff_ter]
     player_colors =  [col_play_1, col_play_2, col_play_4, col_play_4]
     
@@ -191,7 +192,7 @@ class Tile:
     ter_names = ["center", "light", "normal", "difficult"]
 
     
-    def __init__(self, rect_x = 0, rect_y = 0 ,radi_start = 0, radi_end = 0,  terrain = 0):
+    def __init__(self, rect_x = 0, rect_y = 0 ,radi_start = 0, radi_end = 0,  terrain = 0, units = None):
         """
         defines the instance attributes for every tile on call
         """
@@ -201,8 +202,15 @@ class Tile:
         self.radi_start = radi_start
         self.radi_end = radi_end
         self.terrain = terrain
+        if units == None:
+            self.units = []
+        else:
+            self.units = units
         
     def __str__(self):
+        """
+        string output for the class
+        """
         pass
         
     def change_terrain(self, new_ter):
@@ -215,6 +223,18 @@ class Tile:
         """
         self.radi_start = new_radi_start
         self.radi_end = new_radi_end
+        
+    def add_unit(self, unit):
+        """
+        adds a unit to the tile
+        """
+        pass
+    
+    def del_unit(self, unit):
+        """
+        deletes a unit from a tile
+        """
+        pass
         
 class Center_Piece:
     """
